@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "bouillabaisse-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,17 +9,20 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "vuesax": "^4.0.1-alpha.25"
+    "vue": "^2.6.11",
+    "vuetify": "^2.5.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.32.13",
+    "sass-loader": "^11.1.0",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
@@ -27,7 +30,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/essential",
       "eslint:recommended"
     ],
     "parserOptions": {
