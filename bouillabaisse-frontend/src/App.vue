@@ -1,8 +1,11 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer app>
-      <v-sheet color="grey lighten-4" class="pa-4">
-        <div>Bouillabaisse</div>
+  <v-app
+    id="main"
+    :style="{ background: $vuetify.theme.themes[theme].background }"
+  >
+    <v-navigation-drawer app dark>
+      <v-sheet class="pa-4">
+        <div><strong>Bouillabaisse</strong></div>
       </v-sheet>
 
       <v-divider></v-divider>
@@ -74,11 +77,19 @@ export default {
       { title: "Click Me 4" },
     ],
   }),
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+  },
+  created() {
+    // this.$vuetify.theme.dark = true
+  },
 };
 </script>
 
 <style scoped>
 #app-bar {
-  box-shadow: 0 5px 10px #FFF, 0 10px 25px #FFF;
+  box-shadow: 0 5px 10px #fff, 0 10px 25px #fff;
 }
 </style>

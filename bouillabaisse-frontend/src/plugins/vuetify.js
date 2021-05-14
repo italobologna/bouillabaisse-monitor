@@ -7,6 +7,17 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 
-const opts = {}
+const opts = {
+    theme: {
+        themes: {
+            light: {
+                background: '#EEEEEE'
+            }
+        }
+    },
+    options: {
+        customProperties: true
+    },
+}
 
 export default new Vuetify(opts)
