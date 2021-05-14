@@ -1,8 +1,5 @@
 <template>
-  <v-app
-    id="main"
-    :style="{ background: $vuetify.theme.themes[theme].background }"
-  >
+  <v-app id="main" :style="{ background: color }">
     <v-navigation-drawer app dark>
       <v-sheet class="pa-4">
         <div><strong>Bouillabaisse</strong></div>
@@ -29,10 +26,33 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar id="app-bar" app dense color="white" class="pl-3 pr-6">
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+    <v-app-bar
+      app
+      id="app-bar"
+      class="pl-3 pr-6"
+      :style="{
+        'box-shadow': '0 5px 10px, 0 10px 25px',
+        background: color,
+        color,
+      }"
+    >
+      <v-menu transition="slide-y-transition" right offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-switch
+              v-model="$vuetify.theme.dark"
+              hint="This toggles the global state of the Vuetify theme"
+              inset
+              label="Theme Dark"
+            ></v-switch>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
       <v-spacer></v-spacer>
 
@@ -81,15 +101,12 @@ export default {
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
+    color() {
+      return this.$vuetify.theme.themes[this.theme].background;
+    },
   },
   created() {
     // this.$vuetify.theme.dark = true
   },
 };
 </script>
-
-<style scoped>
-#app-bar {
-  box-shadow: 0 5px 10px #fff, 0 10px 25px #fff;
-}
-</style>

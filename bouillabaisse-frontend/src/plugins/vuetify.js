@@ -12,6 +12,9 @@ const opts = {
         themes: {
             light: {
                 background: '#EEEEEE'
+            },
+            dark: {
+                background: '#121212'
             }
         }
     },
