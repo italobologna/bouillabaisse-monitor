@@ -2,8 +2,13 @@
   <div>
     <v-container>
       <v-row>
+        <v-col md="3">
+          <dashboard-statistic></dashboard-statistic>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col>
-          <v-card class="mt-4 mx-auto" max-width="400">
+          <v-card class="mt-4 mx-auto" max-width="600">
             <v-sheet
               class="v-sheet--offset mx-auto"
               color="white"
@@ -41,7 +46,7 @@
           </v-card>
         </v-col>
         <v-col>
-          <v-card class="mt-4 mx-auto" max-width="400">
+          <v-card class="mt-4 mx-auto" max-width="600">
             <v-sheet
               class="v-sheet--offset mx-auto"
               color="white"
@@ -122,7 +127,14 @@
 </template>
 
 <script>
+import DashboardStatistic from "./dashboard-statistic";
+import dashboardStatistic from './dashboard-statistic.vue';
+
 export default {
+  components: { dashboardStatistic },
+  component: {
+    DashboardStatistic,
+  },
   data: () => ({
     labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
     value: [200, 675, 410, 390, 310, 460, 250, 240],
