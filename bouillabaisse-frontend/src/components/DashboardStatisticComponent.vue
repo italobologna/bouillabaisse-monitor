@@ -36,13 +36,23 @@
 
 <script>
 export default {
-  data() {
-    return {
-      icon: "mdi-poll",
-      value: "value",
-      name: "name",
-      caption: "caption",
-    };
+  props: {
+    icon: {
+      required: true,
+      type: String
+    },
+    value: {
+      required: true,
+      type: String
+    },
+    name: {
+      required: true,
+      type: String
+    },
+    caption: {
+      required: true,
+      type: String
+    }
   },
 };
 </script>

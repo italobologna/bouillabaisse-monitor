@@ -2,8 +2,29 @@
   <div>
     <v-container>
       <v-row>
-        <v-col md="3">
-          <statistic-component></statistic-component>
+        <v-col md="4">
+          <statistic-component
+            :icon="'mdi-poll'"
+            :value="'value'"
+            :name="'name'"
+            :caption="'caption'"
+          ></statistic-component>
+        </v-col>
+        <v-col md="4">
+          <statistic-component
+            :icon="'mdi-poll'"
+            :value="'value'"
+            :name="'name'"
+            :caption="'caption'"
+          ></statistic-component>
+        </v-col>
+        <v-col md="4">
+          <statistic-component
+            :icon="'mdi-poll'"
+            :value="'value'"
+            :name="'name'"
+            :caption="'caption'"
+          ></statistic-component>
         </v-col>
       </v-row>
       <v-row>
