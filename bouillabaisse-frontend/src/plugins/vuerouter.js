@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
-import Dashboard from './../components/dashboard'
-import Notifications from './../components/notifications'
+import Dashboard from './../components/Dashboard'
+import Notifications from './../components/Notifications'
 
 const routes = [
     {

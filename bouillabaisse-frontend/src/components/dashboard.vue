@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col md="3">
-          <dashboard-statistic></dashboard-statistic>
+          <statistic-component></statistic-component>
         </v-col>
       </v-row>
       <v-row>
@@ -127,14 +127,10 @@
 </template>
 
 <script>
-import DashboardStatistic from "./dashboard-statistic";
-import dashboardStatistic from './dashboard-statistic.vue';
+import statisticComponent from './DashboardStatisticComponent.vue';
 
 export default {
-  components: { dashboardStatistic },
-  component: {
-    DashboardStatistic,
-  },
+  components: { statisticComponent },
   data: () => ({
     labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
     value: [200, 675, 410, 390, 310, 460, 250, 240],
