@@ -34,9 +34,6 @@
         <v-col md="6">
           <chart-component></chart-component>
         </v-col>
-        <v-col md="6">
-          <chart-component></chart-component>
-        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -67,17 +64,6 @@ export default {
 </script>
 
 <style scoped>
-.v-sheet--offset {
-  top: -24px;
-  position: relative;
-}
-
-.stackSpark {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .dashboard-card-container .v-card {
   margin-bottom: 15px;
 }

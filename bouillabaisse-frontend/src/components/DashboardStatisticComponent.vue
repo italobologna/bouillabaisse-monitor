@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-3 mt-3" max-width="400px" min-width="225px">
+  <v-card class="pa-3 mt-3" max-width="500px" min-width="225px">
     <v-card-title class="d-flex pa-0 justify-space-between">
       <v-sheet
         dark
