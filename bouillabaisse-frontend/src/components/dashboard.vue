@@ -29,7 +29,21 @@
       </v-row>
       <v-row>
         <v-col md="6">
-          <chart-component2></chart-component2>
+          <chart-component2
+            name="Monitor Name2"
+            location="Monitor Location2"
+            last-updated="28 minutes ago"
+            :seriesValues="value1"
+            :threshold="13"
+          ></chart-component2>
+        </v-col>
+        <v-col md="6">
+          <chart-component2
+            name="Without threshold"
+            location="Monitor Location3"
+            last-updated="2 minutes ago"
+            :seriesValues="value2"
+          ></chart-component2>
         </v-col>
         <v-col md="6">
           <chart-component></chart-component>
@@ -56,10 +70,10 @@ export default {
   }),
   computed: {
     value1() {
-      return this.value.map((i) => (2.0 + Math.random()) * i);
+      return this.value.map(() => 12 + Math.random() * 6);
     },
     value2() {
-      return this.value.map((i) => (1.0 + Math.random()) * i);
+      return this.value.map(() => 12 + Math.random() * 6);
     },
   },
 };
@@ -68,5 +82,6 @@ export default {
 <style scoped>
 .dashboard-card-container .v-card {
   margin-bottom: 15px;
+  box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
 }
 </style>
