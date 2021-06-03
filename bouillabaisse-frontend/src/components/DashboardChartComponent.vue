@@ -86,6 +86,7 @@ export default {
   },
   data() {
     return {
+      series: [],
       chartOptions: {
         chart: {
           type: "line",
@@ -102,6 +103,7 @@ export default {
           toolbar: {
             show: false,
           },
+          width: "99%"
         },
         fill: {
           type: "gradient",
@@ -127,9 +129,8 @@ export default {
       },
     };
   },
-  computed: {
-    series() {
-      return [
+  mounted() {
+    this.series = [
         {
           name: "threshold",
           data: this.threshold
@@ -143,7 +144,6 @@ export default {
           type: "area",
         },
       ];
-    },
-  },
+  }
 };
 </script>
