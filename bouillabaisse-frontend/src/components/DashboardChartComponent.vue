@@ -1,68 +1,149 @@
 <template>
   <v-card class="mt-4 mx-auto" max-width="800" min-width="400">
-    <v-sheet
-      class="v-sheet--offset mx-auto"
-      color="white"
-      elevation="12"
-      max-width="calc(100% - 32px)"
-    >
-      <v-sparkline
-        :value="value1"
-        smooth
-        color="rgb(0, 255, 0, 1)"
-        line-width="2"
-        padding="16"
-      ></v-sparkline>
-      <v-sparkline
-        :value="value2"
-        smooth
-        color="rgb(255, 0, 0, 0.5)"
-        line-width="2"
-        padding="16"
-        class="stackSpark"
-      ></v-sparkline>
-    </v-sheet>
+    <v-card-title class="d-flex pa-0 mx-3 justify-space-between">
+      <div class="d-flex flex-row">
+        <v-sheet
+          dark
+          rounded
+          class="v-sheet--offset elevation-7 mb-n6 pa-7 success"
+          :style="{
+            'max-height': '90px',
+            'max-width': '90px',
+            width: 'auto',
+            position: 'relative',
+            top: '-30px',
+          }"
+        >
+          <v-icon style="font-size: 32px">mdi-monitor</v-icon>
+        </v-sheet>
 
-    <v-card-text class="pt-0">
-      <div class="title font-weight-light mb-2">User Registrations</div>
-      <div class="subheading font-weight-light grey--text">
-        Last Campaign Performance
+        <div class="ml-3 mt-2">
+          <div>
+            <span class="text-h5 font-weight-light grey--text text--darken-2">
+              {{ name }}
+            </span>
+          </div>
+          <div class="text-body-2 font-weight-light grey--text">
+            <span>{{ location }} </span>
+            <span> - </span>
+            <span class="caption">
+              {{ lastUpdated }}
+            </span>
+          </div>
+        </div>
       </div>
-      <v-divider class="my-2"></v-divider>
-      <v-icon class="mr-2" small> mdi-clock </v-icon>
-      <span class="caption grey--text font-weight-light"
-        >last registration 26 minutes ago</span
-      >
+      <div>
+        <v-btn icon>
+          <v-icon style="font-size: 20px">mdi-arrow-expand</v-icon>
+        </v-btn>
+      </div>
+    </v-card-title>
+    <v-card-text class="pa-0">
+      <v-sheet color="transparent">
+        <apexchart
+          height="180"
+          :options="chartOptions"
+          :series="series"
+        ></apexchart>
+      </v-sheet>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import VueApexCharts from "vue-apexcharts";
+import colors from "vuetify/lib/util/colors";
+
 export default {
-  data: () => ({
-    labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
-    value: [200, 675, 410, 390, 310, 460, 250, 240],
-  }),
-  computed: {
-    value1() {
-      return this.value.map((i) => (2.0 + Math.random()) * i);
+  components: {
+    apexchart: VueApexCharts,
+  },
+  props: {
+    name: {
+      type: String,
+      required: true,
+      default: "Monitor Name",
     },
-    value2() {
-      return this.value.map((i) => (1.0 + Math.random()) * i);
+    location: {
+      type: String,
+      required: true,
+      default: "Monitor Location",
+    },
+    lastUpdated: {
+      type: String,
+      required: true,
+      default: "26 minutes ago",
+    },
+    threshold: {
+      type: Number,
+      required: false,
+    },
+    seriesValues: {
+      type: Array,
+      required: true,
+      default: () => [12, 11, 14, 18, 17, 13, 13],
+    },
+  },
+  data() {
+    return {
+      chartOptions: {
+        chart: {
+          type: "line",
+          sparkline: {
+            enabled: true,
+          },
+          animations: {
+            enabled: true,
+            easing: "easeinout",
+          },
+          zoom: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        fill: {
+          type: "gradient",
+          colors: [colors.grey.darken1, "#4caf50"],
+          opacity: 0,
+          gradient: {
+            type: "vertical",
+            shadeIntensity: 0,
+            opacityFrom: 0.7,
+            opacityTo: 0.2,
+            stops: [0, 100],
+          },
+        },
+        stroke: {
+          curve: "smooth",
+          colors: [colors.grey.darken1, "#4caf50"],
+          dashArray: [8, 0],
+          width: [5, 5],
+        },
+        tooltip: {
+          enabled: false,
+        },
+      },
+    };
+  },
+  computed: {
+    series() {
+      return [
+        {
+          name: "threshold",
+          data: this.threshold
+            ? Array(this.seriesValues.length).fill(this.threshold)
+            : [],
+          type: "line",
+        },
+        {
+          name: "minimum found",
+          data: this.seriesValues,
+          type: "area",
+        },
+      ];
     },
   },
 };
 </script>
-
-<style scoped>
-.v-sheet--offset {
-  top: -24px;
-  position: relative;
-}
-
-.stackSpark {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-</style>

@@ -29,24 +29,21 @@
       </v-row>
       <v-row>
         <v-col md="6">
-          <chart-component2
+          <chart-component
             name="Monitor Name2"
             location="Monitor Location2"
             last-updated="28 minutes ago"
             :seriesValues="value1"
             :threshold="13"
-          ></chart-component2>
+          ></chart-component>
         </v-col>
         <v-col md="6">
-          <chart-component2
+          <chart-component
             name="Without threshold"
             location="Monitor Location3"
             last-updated="2 minutes ago"
             :seriesValues="value2"
-          ></chart-component2>
-        </v-col>
-        <v-col md="6">
-          <chart-component></chart-component>
+          ></chart-component>
         </v-col>
       </v-row>
     </v-container>
@@ -56,13 +53,11 @@
 <script>
 import statisticComponent from "./DashboardStatisticComponent.vue";
 import chartComponent from "./DashboardChartComponent.vue";
-import chartComponent2 from "./DashboardChartComponent2.vue";
 
 export default {
   components: {
     statisticComponent,
     chartComponent,
-    chartComponent2,
   },
   data: () => ({
     labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
