@@ -2,49 +2,27 @@
   <div>
     <v-container class="dashboard-card-container">
       <v-row>
-        <v-col md="4">
+        <v-col md="4" v-for="(statistic, i) in statistics" :key="i">
           <statistic-component
-            :icon="'mdi-poll'"
-            :value="'value'"
-            :name="'name'"
-            :caption="'caption'"
-          ></statistic-component>
-        </v-col>
-        <v-col md="4">
-          <statistic-component
-            :icon="'mdi-poll'"
-            :value="'value'"
-            :name="'name'"
-            :caption="'caption'"
-          ></statistic-component>
-        </v-col>
-        <v-col md="4">
-          <statistic-component
-            :icon="'mdi-poll'"
-            :value="'value'"
-            :name="'name'"
-            :caption="'caption'"
+            :icon="statistic.icon"
+            :value="statistic.value"
+            :name="statistic.name"
+            :caption="statistic.caption"
           ></statistic-component>
         </v-col>
       </v-row>
       <v-row>
-        <v-col md="6">
+        <div class="d-flex flex-wrap">
           <chart-component
-            name="Monitor Name2"
-            location="Monitor Location2"
-            last-updated="28 minutes ago"
-            :seriesValues="value1"
-            :threshold="13"
+            v-for="(monitor, i) in monitors"
+            :key="i"
+            :name="monitor.data.name"
+            :location="monitor.data.location"
+            :last-updated="monitor.data.lastUpdated"
+            :seriesValues="monitor.data.series"
+            :threshold="monitor.data.threshold"
           ></chart-component>
-        </v-col>
-        <v-col md="6">
-          <chart-component
-            name="Without threshold"
-            location="Monitor Location3"
-            last-updated="2 minutes ago"
-            :seriesValues="value2"
-          ></chart-component>
-        </v-col>
+        </div>
       </v-row>
     </v-container>
   </div>
@@ -59,17 +37,62 @@ export default {
     statisticComponent,
     chartComponent,
   },
-  data: () => ({
-    labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
-    value: [200, 675, 410, 390, 310, 460, 250, 240],
-  }),
-  computed: {
-    value1() {
-      return this.value.map(() => 12 + Math.random() * 6);
-    },
-    value2() {
-      return this.value.map(() => 12 + Math.random() * 6);
-    },
+  data() {
+    let values = [200, 675, 410, 390, 310, 460, 250, 240];
+    return {
+      statistics: [
+        {
+          icon: "mdi-poll",
+          value: "value",
+          name: "name",
+          caption: "caption",
+        },
+        {
+          icon: "mdi-poll",
+          value: "value",
+          name: "name",
+          caption: "caption",
+        },
+        {
+          icon: "mdi-poll",
+          value: "value",
+          name: "name",
+          caption: "caption",
+        },
+      ],
+      monitors: [
+        {
+          expanded: false,
+          data: {
+            name: "Monitor Name2",
+            location: "Monitor Location2",
+            lastUpdated: "28 minutes ago",
+            threshold: 13,
+            series: values.map(() => 12 + Math.random() * 6),
+          },
+        },
+        {
+          expanded: false,
+          data: {
+            name: "Without threshold",
+            location: "Monitor Location3",
+            lastUpdated: "2 minutes ago",
+            threshold: null,
+            series: values.map(() => 12 + Math.random() * 6),
+          },
+        },
+        {
+          expanded: false,
+          data: {
+            name: "Without threshold",
+            location: "Monitor Location3",
+            lastUpdated: "2 minutes ago",
+            threshold: 14,
+            series: values.map(() => 12 + Math.random() * 6),
+          },
+        },
+      ],
+    };
   },
 };
 </script>
